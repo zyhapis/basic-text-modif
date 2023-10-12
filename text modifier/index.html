@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Text Modifier</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Text Modifier</h1>
+    <form id="textForm">
+      <label for="inputText" class="input-label">Masukkan Teks:</label>
+      <input type="text" id="inputText" class="input-text">
+      <button type="button" onclick="convertText()" class="custom-button">Proses</button>
+    </form>
+    <label for="convertedResult" class="input-label">Hasil:</label>
+    <input type="text" id="convertedResult" class="input-text" readonly>
+  </div>
+
+  <script>
+    function convertText() {
+      let inputText = document.getElementById("inputText").value;
+      let operation = prompt("Pilih operasi:\n\n1. Uppercase\n2. Lowercase\n3. Ganti Kata");
+
+      if (operation === "1") {
+        let convertedText = inputText.toUpperCase();
+        document.getElementById("convertedResult").value = convertedText;
+      } else if (operation === "2") {
+        let convertedText = inputText.toLowerCase();
+        document.getElementById("convertedResult").value = convertedText;
+      } else if (operation === "3") {
+        let wordToReplace = prompt("Masukkan kata yang ingin diubah:");
+        let newWord = prompt("Masukkan kata pengganti:");
+        
+        if (inputText.includes(wordToReplace)) {
+          let convertedText = inputText.replace(new RegExp(wordToReplace, 'g'), newWord);
+          document.getElementById("convertedResult").value = convertedText;
+        } else {
+          alert("Kata yang ingin diubah tidak ditemukan dalam teks.");
+        }
+      } else {
+        alert("Operasi tidak valid.");
+      }
+    }
+  </script>
+  
+</body>
+</html>
